@@ -1,5 +1,5 @@
-FROM golang:1.9.6-alpine
+FROM golang:1.9.4-alpine
 
-ENV PACKAGES "git make zip bash curl tzdata"
+ENV PACKAGES "git"
 
 RUN apk add --update $PACKAGES && rm -rf /var/cache/apk/*
