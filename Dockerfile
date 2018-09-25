@@ -4,7 +4,7 @@ ENV PACKAGES "unzip curl openssl ca-certificates git jq util-linux gzip bash uui
 RUN apt-get update && apt-get install -y --no-install-recommends ${PACKAGES}
 RUN curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&version=6.33.1" | tar -zx -C /usr/local/bin
 
-RUN curl -L "https://github.com/mikefarah/yq/releases/download/1.14.0/yq_linux_amd64" -o yq && chmod +x yq && mv yq /usr/local/bin/yq
+RUN curl -L "https://github.com/mikefarah/yq/releases/download/1.15.0/yq_linux_amd64" -o yq && chmod +x yq && mv yq /usr/local/bin/yq
 RUN ln -s /usr/local/bin/yq /usr/local/bin/yaml
 
 RUN curl -L "https://github.com/geofffranks/spruce/releases/download/v1.10.0/spruce-linux-amd64" -o spruce && chmod +x spruce && mv spruce /usr/local/bin/spruce
