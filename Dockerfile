@@ -13,4 +13,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends ${PACKAGES} && 
     cf install-plugin -r CF-Community -f "autopilot" && \
     mkdir -p /root/.ssh && \
     git config --global user.email "git-ssh@example.com" && \
-    git config --global user.name "Docker container git-ssh"
+    git config --global user.name "Docker container git-ssh" && \
+    go get github.com/onsi/ginkgo/ginkgo && \
+    go get github.com/onsi/gomega/...

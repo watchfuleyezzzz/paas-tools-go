@@ -1,1 +1,3 @@
-# PaaS Tools based on Golang 1.10
+# PaaS Tools
+
+A set of tools useful for Concourse jobs that need golang
