@@ -1,4 +1,4 @@
-FROM golang:1.11-stretch
+FROM golang:1.12-stretch
 ENV CF_CLI_VERSION="6.40.1"
 ENV YQ_VERSION="1.15.0"
 ENV SPRUCE_VERION="1.10.0"
@@ -17,4 +17,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends ${PACKAGES} && 
     git config --global user.email "git-ssh@example.com" && \
     git config --global user.name "Docker container git-ssh" && \
     go get github.com/onsi/ginkgo/ginkgo && \
-    go get github.com/onsi/gomega/...
+    go get github.com/onsi/gomega/... && \
+    go get github.com/EngineerBetter/stopover
