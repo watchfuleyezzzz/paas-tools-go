@@ -1,10 +1,11 @@
 FROM golang:1.14-buster
-ENV CF_CLI_VERSION="6.50.0"
+ENV CF_CLI_VERSION="6.49.0"
 ENV YQ_VERSION="3.2.1"
 ENV SPRUCE_VERION="1.25.2"
 ENV SWAGGER_VERION="0.13.0"
 ENV CF_MGMT_VERSION="v1.0.43"
 ENV BOSH_VERSION="6.2.1"
+ENV GOVC_VERSION="0.22.1"
 ENV PACKAGES "awscli unzip curl openssl ca-certificates git jq util-linux gzip bash uuid-runtime coreutils vim tzdata openssh-client gnupg rsync make zip"
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends ${PACKAGES} && apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -17,7 +18,7 @@ RUN curl -L "https://s3-us-west-1.amazonaws.com/cf-cli-releases/releases/v${CF_C
     curl -L "https://github.com/pivotalservices/cf-mgmt/releases/download/${CF_MGMT_VERSION}/cf-mgmt-config-linux" -o /usr/local/bin/cf-mgmt-config && chmod +x /usr/local/bin/cf-mgmt-config && \
     curl -L "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-${BOSH_VERSION}-linux-amd64" -o /usr/local/bin/bosh && chmod +x /usr/local/bin/bosh && \
     curl -L "https://github.com/contraband/autopilot/releases/download/0.0.8/autopilot-linux" -o /tmp/autopilot-linux && \
-    curl -L "https://github.com/vmware/govmomi/releases/download/v0.22.1/govc_linux_amd64.gz" | gunzip > /usr/local/bin/govc && chmod +x /usr/local/bin/govc
+    curl -L "https://github.com/vmware/govmomi/releases/download/v{GOVC_VERSION}/govc_linux_amd64.gz" | gunzip > /usr/local/bin/govc && chmod +x /usr/local/bin/govc
 RUN ln /usr/bin/uuidgen /usr/local/bin/uuid && \
     cf install-plugin -r CF-Community -f "blue-green-deploy" && \
     cf install-plugin /tmp/autopilot-linux -f && \
