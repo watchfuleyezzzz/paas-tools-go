@@ -7,6 +7,7 @@ ENV CF_MGMT_VERSION="v1.0.43"
 ENV BOSH_VERSION="6.2.1"
 ENV GOVC_VERSION="0.22.1"
 ENV BBR_VERSION="1.7.2"
+ENV MC_VERSION="RELEASE.2020-04-25T00-43-23Z"
 ENV PACKAGES "awscli unzip curl openssl ca-certificates git jq util-linux gzip bash uuid-runtime coreutils vim tzdata openssh-client gnupg rsync make zip"
 RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends ${PACKAGES} && apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN curl -fL "https://s3-us-west-1.amazonaws.com/cf-cli-releases/releases/v${CF_CLI_VERSION}/cf-cli_${CF_CLI_VERSION}_linux_x86-64.tgz" | tar -zx -C /usr/local/bin && \
@@ -19,6 +20,7 @@ RUN curl -fL "https://s3-us-west-1.amazonaws.com/cf-cli-releases/releases/v${CF_
     curl -fL "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-${BOSH_VERSION}-linux-amd64" -o /usr/local/bin/bosh && \
     curl -fL "https://github.com/cloudfoundry-incubator/bosh-backup-and-restore/releases/download/v${BBR_VERSION}/bbr-${BBR_VERSION}-linux-amd64" -o /usr/local/bin/bbr && \
     curl -fL "https://github.com/vmware/govmomi/releases/download/v${GOVC_VERSION}/govc_linux_amd64.gz" | gunzip > /usr/local/bin/govc && \
+    curl -fL "https://dl.min.io/client/mc/release/linux-amd64/archive/mc.${MC_VERSION}" > /usr/local/bin/mc && \
     chmod +x /usr/local/bin/*
 RUN ln /usr/bin/uuidgen /usr/local/bin/uuid && \
     cf install-plugin -r CF-Community -f "blue-green-deploy" && \
