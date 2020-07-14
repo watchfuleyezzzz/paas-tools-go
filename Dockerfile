@@ -32,6 +32,7 @@ RUN ln /usr/bin/uuidgen /usr/local/bin/uuid && \
     go get -v github.com/onsi/ginkgo/ginkgo && \
     go get -v github.com/onsi/gomega/... && \
     go get -v github.com/EngineerBetter/stopover && \
+    go get -u -v github.com/FidelityInternational/go-check-certs && \
     rm -rf /tmp/autopilot-linux $GOPATH/src && \
     sed -i 's/^CipherString/#CipherString/g' /etc/ssl/openssl.cnf
 
