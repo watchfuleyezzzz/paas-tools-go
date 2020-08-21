@@ -1,4 +1,4 @@
-FROM golang:1.14-buster
+FROM golang:1.15-buster
 ENV CF_CLI_VERSION="6.51.0"
 ENV YQ_VERSION="3.2.1"
 ENV SPRUCE_VERION="1.25.2"
