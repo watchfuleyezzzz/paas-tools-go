@@ -1,5 +1,5 @@
 FROM golang:1.15-buster
-ENV CF_CLI_VERSION="7.1.0"
+ENV CF_CLI_VERSION="6.52.0"
 ENV YQ_VERSION="3.2.1"
 ENV SPRUCE_VERION="1.25.2"
 ENV SWAGGER_VERION="0.13.0"
@@ -10,7 +10,7 @@ ENV BBR_VERSION="1.7.2"
 ENV MC_VERSION="RELEASE.2020-04-25T00-43-23Z"
 ENV PACKAGES "awscli unzip curl openssl ca-certificates git jq util-linux gzip bash uuid-runtime coreutils vim tzdata openssh-client gnupg rsync make zip"
 RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends ${PACKAGES} && apt-get clean && rm -rf /var/lib/apt/lists/*
-RUN curl -fL "https://s3-us-west-1.amazonaws.com/v7-cf-cli-releases/releases/v${CF_CLI_VERSION}/cf7-cli_${CF_CLI_VERSION}_linux_x86-64.tgz" | tar -zx -C /usr/local/bin && \
+RUN curl -fL "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=${CF_CLI_VERSION}" | tar -zx -C /usr/local/bin && \
     curl -fL "https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64" -o /usr/local/bin/yq && \
     ln -s /usr/local/bin/yq /usr/local/bin/yaml && \
     curl -fL "https://github.com/geofffranks/spruce/releases/download/v${SPRUCE_VERION}/spruce-linux-amd64" -o /usr/local/bin/spruce && \
