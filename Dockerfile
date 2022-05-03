@@ -38,9 +38,9 @@ RUN ln /usr/bin/uuidgen /usr/local/bin/uuid && \
 RUN mkdir -p /root/.ssh && \
     git config --global user.email "git-ssh@example.com" && \
     git config --global user.name "Docker container git-ssh" && \
-    go get -v github.com/onsi/ginkgo/ginkgo && \
-    go get -v github.com/onsi/gomega/... && \
-    go get -v github.com/FidelityInternational/stopover && \
-    go get -u -v github.com/FidelityInternational/go-check-certs && \
+    go install github.com/onsi/ginkgo/ginkgo@latest && \
+    go install -mod=mod github.com/onsi/gomega && \
+    go install github.com/FidelityInternational/stopover@v1.0.1 && \
+    go install github.com/FidelityInternational/go-check-certs@latest && \
     rm -rf $GOPATH/src && \
     sed -i 's/^CipherString/#CipherString/g' /etc/ssl/openssl.cnf
